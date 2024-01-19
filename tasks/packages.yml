@@ -1,0 +1,12 @@
+- name: Install packages
+  apt:
+    name:
+      - btop
+      - tmux
+      - micro
+      - bash
+      - neovim
+      - neofetch
+        
+      
+     
