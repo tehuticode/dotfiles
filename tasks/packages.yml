@@ -7,6 +7,9 @@
       - bash
       - neovim
       - neofetch
+      - tmux
+      - rofi
+      
         
       
      
