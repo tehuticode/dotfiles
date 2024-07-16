@@ -8,23 +8,11 @@ local function keymaps()
     nmap("<leader>otd", ":ObsidianToday<CR>", "[O]bsidian [T]o[d]ay")
     nmap("<leader>os", ":ObsidianSearch<CR>", "[O]bsidian [S]earch")
     nmap("<leader>on", ":ObsidianNew<CR>", "[O]bsidian [N]ew")
-    nmap("<leader>it", ":ObsidianTemplate<CR>", "[O]bsidian [T]emplate")
-   -- nmap("<leader>it", ":lua InsertTemplate()<CR>", "[I]nsert [T]emplate")
+    nmap("<leader>ot", ":ObsidianTemplate<CR>", "[O]bsidian [T]emplate")
 end
 
 local opts = {
-    default_workspace = "m0xu_vault",
-    workspaces = {
-        {
-            name = "m0xu_vault",
-            path = "/home/m0xu_p/1-Projects/vaults/m0xu_vault",
-        },
-        {
-            name = "tsub0xdai_vault",
-            path = "/home/m0xu_p/1-Projects/vaults/tsub0xdai_vault",
-        },
-    },
-    new_notes_location = "current_dir",
+    dir = "/home/sub0x/1-projects/vaults/sub0x_vault",
     completion = {
         nvim_cmp = true,
         min_chars = 2,
@@ -42,7 +30,7 @@ local opts = {
 -- Custom function to browse and insert templates
 function InsertTemplate()
     local telescope = require('telescope.builtin')
-    local templates_dir = '/home/m0xu_p/1-Projects/vaults/m0xu_vault/templates'
+    local templates_dir = '/home/sub0x/1-projects/vaults/sub0x_vault/6-templates'
     telescope.find_files({
         prompt_title = "Insert Template",
         cwd = templates_dir,
@@ -89,4 +77,4 @@ return {
         keymaps()
     end
 }
---Got the above from Obsidian Github
+
