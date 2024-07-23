@@ -1,3 +1,5 @@
+
+
 local function nmap(key, cmd, desc)
     vim.api.nvim_set_keymap('n', key, cmd, { noremap = true, silent = true, desc = desc })
 end
@@ -9,6 +11,10 @@ local function keymaps()
     nmap("<leader>os", ":ObsidianSearch<CR>", "[O]bsidian [S]earch")
     nmap("<leader>on", ":ObsidianNew<CR>", "[O]bsidian [N]ew")
     nmap("<leader>ot", ":ObsidianTemplate<CR>", "[O]bsidian [T]emplate")
+    nmap("<leader>oq", ":vsplit | :ObsidianQuickSwitch<CR>", "[O]bsidian [Q]uick[S]witch")
+    nmap("<leader>of", ":ObsidianFollowLink<CR>", "[O]bsidian [F]ollow[L]ink")
+    nmap("<leader>op", ":ObsidianPasteImg<CR>", "[O]bsidian [P]aste[I]mg")
+    nmap("<leader>oen", ":ObsidianExtractNote<CR>", "[O]bsidian [E]xtract[N]ote")
 end
 
 local opts = {
@@ -62,6 +68,10 @@ return {
         { "<leader>ob", "<cmd>ObsidianBacklinks<cr>", desc = "[O]bsidian [B]acklinks" },
         { "<leader>ote", "<cmd>ObsidianTemplate<cr>", desc = "[O]bsidian [T]emplate" },
         { "<leader>at", "<cmd>lua InsertTemplate()<cr>", desc = "[A]lt [T]emplate" },
+        { "<leader>oq", "<cmd>vsplit | ObsidianQuickSwitch<cr>", desc = "[O]bsidian [Q]uick[S]witch" },
+        { "<leader>of", "<cmd>ObsidianFollowLink<cr>", desc = "[O]bsidian [F]ollow[L]ink" },
+        { "<leader>op", "<cmd>ObsidianPasteImg<cr>", desc = "[O]bsidian [P]aste[I]mg" },
+        { "<leader>oen", "<cmd>ObsidianExtractNote<cr>", desc = "[O]bsidian [E]xtract[N]ote" },
     },
     lazy = true,
     ft = "markdown",
