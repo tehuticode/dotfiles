@@ -10,10 +10,12 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
+vim.g.python3_host_prog = vim.fn.exepath('python3')
 vim.wo.relativenumber = true
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "markdown",
     command = "setlocal conceallevel=2"
+
 })
 
 

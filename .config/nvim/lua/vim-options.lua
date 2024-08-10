@@ -25,6 +25,11 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 vim.keymap.set('n', '<C-n>', ':vnew<CR>', {noremap = true, silent = true})
 
+-- Key Mappings for Buffer Navigation
+vim.keymap.set('n', '<C-[>', ':bprevious<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-]>', ':bnext<CR>', { noremap = true, silent = true })
+
+
 -- Editing Experience
 vim.opt.backspace = {'indent', 'eol', 'start'}
 vim.opt.showcmd = true
