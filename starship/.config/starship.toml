@@ -4,9 +4,9 @@ format = """
 [](surface0)\
 $os\
 $username\
-[](bg:peach fg:surface0)\
+[](bg:lavender fg:surface0)\
 $directory\
-[](fg:peach bg:green)\
+[](fg:lavender bg:green)\
 $git_branch\
 $git_status\
 [](fg:green bg:teal)\
@@ -27,6 +27,7 @@ $time\
 $line_break$character"""
 
 palette = 'catppuccin_mocha'
+# palette = 'gruvbox_dark'
 
 [palettes.gruvbox_dark]
 color_fg0 = '#fbf1c7'
@@ -67,6 +68,7 @@ surface0 = "#313244"
 base = "#1e1e2e"
 mantle = "#181825"
 crust = "#11111b"
+dark_lavender = "#1e1e2e"
 
 [os]
 disabled = false
@@ -100,7 +102,7 @@ style_root = "bg:surface0 fg:text"
 format = '[ $user ]($style)'
 
 [directory]
-style = "fg:mantle bg:peach"
+style = "fg:mantle bg:lavender"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"

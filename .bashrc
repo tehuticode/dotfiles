@@ -34,10 +34,12 @@ alias tm="tmux"
 alias powerm="xfce4-power-manager-settings"
 alias update='sudo pacman -Syu'
 alias reload='source ~/.bashrc'
-
+alias weather='curl wttr.in/melbourne'
+alias fman='compgen -c | fzf | xargs man'
+alias fzf='fzf --preview="bat --color=always {}"'
 
 # shell fn to create zettel note from terminal
-note() {
+zk() {
     read -p "title: " filename
     nvim ~/1-projects/vaults/sub0x_vault/0-zettel/"$filename".md
 }
