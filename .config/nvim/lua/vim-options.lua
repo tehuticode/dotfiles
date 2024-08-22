@@ -25,6 +25,13 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 vim.keymap.set('n', '<C-n>', ':vnew<CR>', {noremap = true, silent = true})
 
+
+-- Copy Full Path of Current File
+vim.keymap.set('n', '<Leader>CPF', ':let @+ = expand("%:p")<CR>', { noremap = true, silent = true, desc = "Copy full path of current file" })
+
+-- Make File Executable
+vim.keymap.set('n', '<Leader>X', ':!chmod +x %<CR>', { noremap = true, silent = true, desc = "Make current file executable" })
+
 -- Key Mappings for Buffer Navigation
 vim.keymap.set('n', '<C-[>', ':bprevious<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-]>', ':bnext<CR>', { noremap = true, silent = true })

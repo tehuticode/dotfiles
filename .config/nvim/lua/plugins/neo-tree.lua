@@ -9,8 +9,8 @@ return {
 	config = function()
 		vim.keymap.set("n", "<A-[>", ":Neotree toggle left<CR>", {})
     vim.keymap.set("n", "<leader>bf", ":Neotree buffers reveal float<CR>", {})
-    vim.keymap.set("n", "<leader>r", ":Neotree refresh<CR>", {})
+    vim.keymap.set("n", "<leader>r", ":Neotree reveal<CR>", {})
 
 
   end,
-}
+}  

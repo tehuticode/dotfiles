@@ -11,8 +11,15 @@ return {
     "williamboman/mason-lspconfig.nvim",
     lazy = false,
     opts = {
-      ensure_installed = {"pyright"},
-      auto_install = true,
+      ensure_installed = {
+        "pyright",
+        "tsserver",
+        "html",
+        "lua_ls",
+        "clangd",
+        "solargraph"
+      },
+      automatic_installation = true,
     },
   },
   {
@@ -20,30 +27,15 @@ return {
     lazy = false,
     config = function()
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
       local lspconfig = require("lspconfig")
-      lspconfig.tsserver.setup({
-        capabilities = capabilities
-      })
-      lspconfig.solargraph.setup({
-        capabilities = capabilities
-      })
-      lspconfig.html.setup({
-        capabilities = capabilities
-      })
-      lspconfig.lua_ls.setup({
-        capabilities = capabilities
-      })
-      lspconfig.pyright.setup({
-        capabilities = capabilities
-      })
-      lspconfig.clangd.setup({
-        capabilities = capabilities
-      })
-      lspconfig.htmx.setup({
-        capabilities = capabilities
-      })
+      local servers = { "pyright", "tsserver", "html", "lua_ls", "clangd", "solargraph" } 
+      for _, lsp in ipairs(servers) do
+        lspconfig[lsp].setup({
+          capabilities = capabilities
+        })
+      end
 
+      -- Keybindings
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
       vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
@@ -51,4 +43,3 @@ return {
     end,
   },
 }
-
