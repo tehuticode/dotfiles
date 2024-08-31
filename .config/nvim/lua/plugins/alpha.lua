@@ -37,12 +37,12 @@ return {
          -- Buttons
     dashboard.section.buttons.val = {
       dashboard.button("e", "  New File", ":ene <BAR> startinsert <CR>"),
-      dashboard.button("s", "  Settings", ":e $MYVIMRC<CR> | :cd %:p:h | split . | wincmd k | pwd<CR>"),
+      -- dashboard.button("s", "  Settings", ":e $MYVIMRC<CR> | :cd %:p:h | split . | wincmd k | pwd<CR>"),
          }
 
       -- Footer
 
-local quote = "observe the route that your attention follows"
+local quote ="I showed you my source code, pls respond"
 local width = 140 -- Adjust based on your terminal width
 local padding = math.floor((width - #quote) / 2)
 local padded_quote = string.rep(" ", padding) .. quote .. string.rep(" ", padding)

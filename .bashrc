@@ -1,5 +1,3 @@
-
-
 # ~/.bashrc
 
 # If not running interactively, don't do anything
@@ -25,7 +23,6 @@ alias vim='nvim'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history | tail -n1 | sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias fetch='neofetch'
 alias shutdown='sync; shutdown -h now'
-# alias fd=fdfinear
 alias tor='cd ~/Documents/tor-browser && ./start-tor-browser.desktop'
 alias commit='git add -A; git commit -m'
 alias ssha='eval $(ssh-agent) && ssh-add'
@@ -38,6 +35,17 @@ alias weather='curl wttr.in/melbourne'
 alias fman='compgen -c | fzf | xargs man'
 alias fzf='fzf --preview="bat --color=always {}"'
 alias speed='speedtest-cli'
+alias pomo='pomo start -t'
+
+# Tmux aliases
+alias tns='tmux new-session -s'
+alias tas='tmux attach-session -t'
+alias tls='tmux list-sessions'
+alias tks='tmux kill-session -t'
+alias tsave='tmux run-shell ~/.tmux/plugins/tmux-resurrect/scripts/save.sh'
+alias trestore='tmux run-shell ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh'
+alias tn='tmux new-session -s $(basename $PWD)'
+alias tsd='tsave && tmux detach'
 
 # Start tmux automatically
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
@@ -52,38 +60,26 @@ zk() {
 
 # Function to add a log entry to today's note
 zkl() {
-    # Define the path to your notes
     notes_path=~/1-projects/vaults/sub0x_vault/5-notes
-    # Get today's date in YYYY-MM-DD format
     today=$(date +%Y-%m-%d)
-    # Define the full path to today's note
     todays_note="$notes_path/$today.md"
-    # Create today's note with template if it doesn't exist
     if [ ! -f "$todays_note" ]; then
         create_daily_note
     fi
-    # Prompt for the log entry
     read -p "Log entry: " log_entry
-    # Add the log entry under the Log section
     sed -i '/# Log/,/^---/{/^---/!s/$/\n- '"$log_entry"'/;:a;n;ba}' "$todays_note"
     echo "Entry added to $todays_note"
 }
 
 # Function to add a todo item to today's note
 zkt() {
-    # Define the path to your notes
     notes_path=~/1-projects/vaults/sub0x_vault/5-notes
-    # Get today's date in YYYY-MM-DD format
     today=$(date +%Y-%m-%d)
-    # Define the full path to today's note
     todays_note="$notes_path/$today.md"
-    # Create today's note with template if it doesn't exist
     if [ ! -f "$todays_note" ]; then
         create_daily_note
     fi
-    # Prompt for the todo item
     read -p "Todo item: " todo_item
-    # Add the todo item under the Todo section
     sed -i '/# Todo/,/^---/{/^---/!s/$/\n- [ ] '"$todo_item"'/;:a;n;ba}' "$todays_note"
     echo "Todo item added to $todays_note"
 }
@@ -111,6 +107,7 @@ tags: [daily, journal]
 > [[5-notes]]
 EOF
 }
+
 # Starship prompt
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
@@ -118,32 +115,50 @@ eval "$(zoxide init bash)"
 # FZF default command
 export FZF_DEFAULT_COMMAND='fd --type f'
 export TERM=xterm-256color
+
+# Clean up and set PATH
+clean_path() {
+  echo "$1" | tr ':' '\n' | awk '!seen[$0]++' | tr '\n' ':' | sed 's/:$//'
+}
+
+# Set PATH
+export PATH=$(clean_path "$HOME/perl5/bin:$HOME/.local/share/gem/ruby/3.2.0/bin:$HOME/.npm-global/bin:$HOME/.atuin/bin:$HOME/.luarocks/bin:$HOME/.cargo/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/.local/bin:$HOME/.dotnet:$HOME/.dotnet/tools:$HOME/go/bin:$PATH")
+
+# Ensure Go binaries are in PATH
+export PATH="$HOME/go/bin:$PATH"
+
+# Set default file explorer
+export BROWSER=nautilus
+
+# Cargo (Rust) environment
+. "$HOME/.cargo/env"
+
+# Ruby Gems
+export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+
+# Pipx
+export PATH="$PATH:$HOME/.local/bin"
+
+# .NET Core
+export DOTNET_ROOT=$HOME/.dotnet
+export PATH=$PATH:$HOME/.dotnet:$HOME/.dotnet/tools
+
+# Perl
+export PATH="/home/sub0x/perl5/bin${PATH:+:${PATH}}"
+export PERL5LIB="/home/sub0x/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"
+export PERL_LOCAL_LIB_ROOT="/home/sub0x/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"
+export PERL_MB_OPT="--install_base \"/home/sub0x/perl5\""
+export PERL_MM_OPT="INSTALL_BASE=/home/sub0x/perl5"
+
+# Luarocks
+eval "$(luarocks path --bin)"
+
+# Atuin
 export PATH="$HOME/.atuin/bin:$PATH"
-export PATH=~/.npm-global/bin:$PATH
+
+# Final PATH cleanup (remove duplicates)
+export PATH=$(clean_path "$PATH")
 
 # Source preexec if available
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 eval "$(atuin init bash)"
-
-# Set default browser
-export BROWSER=nautilus
-
-. "$HOME/.cargo/env"
-export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
-
-# Created by `pipx` on 2024-07-22 04:12:44
-export PATH="$PATH:/home/sub0x/.local/bin"
-
-export DOTNET_ROOT=$HOME/.dotnet
-export PATH=$PATH:$HOME/.dotnet:$HOME/.dotnet/tools
-
-
-
-PATH="/home/sub0x/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/sub0x/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/sub0x/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/sub0x/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/sub0x/perl5"; export PERL_MM_OPT;
-eval "$(luarocks path --bin)"
-export DOTNET_ROOT=$HOME/.dotnet
-export PATH=$PATH:$HOME/.dotnet:$HOME/.dotnet/tools

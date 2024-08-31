@@ -1,5 +1,6 @@
 configuration{
-    modi: "run,window,combi";
+    modi: "run,drun,window,combi";
+    combi-modi: "window,run,drun";
     icon-theme: "Oranchelo";
     show-icons: true;
     terminal: "alacritty";
@@ -11,6 +12,7 @@ configuration{
     display-run: " Run ";
     display-window: " Window";
     sidebar-mode: true;
+    drun-search-paths: ["~/.local/share/applications", "/usr/share/applications"];
 }
 
 @theme "catppuccin-mocha"
