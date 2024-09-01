@@ -36,6 +36,7 @@ alias fman='compgen -c | fzf | xargs man'
 alias fzf='fzf --preview="bat --color=always {}"'
 alias speed='speedtest-cli'
 alias pomo='pomo start -t'
+alias repo='~/dotfiles/scripts/repo.sh'
 
 # Tmux aliases
 alias tns='tmux new-session -s'
@@ -127,8 +128,8 @@ export PATH=$(clean_path "$HOME/perl5/bin:$HOME/.local/share/gem/ruby/3.2.0/bin:
 # Ensure Go binaries are in PATH
 export PATH="$HOME/go/bin:$PATH"
 
-# Set default file explorer
-export BROWSER=nautilus
+# Set default browser
+export BROWSER=firefox
 
 # Cargo (Rust) environment
 . "$HOME/.cargo/env"
@@ -155,6 +156,9 @@ eval "$(luarocks path --bin)"
 
 # Atuin
 export PATH="$HOME/.atuin/bin:$PATH"
+
+# Scripts
+export PATH="$PATH:$HOME/dotfiles/scripts"
 
 # Final PATH cleanup (remove duplicates)
 export PATH=$(clean_path "$PATH")
