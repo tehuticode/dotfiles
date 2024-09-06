@@ -12,7 +12,7 @@ return {
             dim_inactive = {
                 enabled = false,
                 shade = "dark",
-                percentage = 0.15,
+                percentage = 01,
             },
             config = function()
                 vim.cmd.colorscheme "catppuccin-frappe"

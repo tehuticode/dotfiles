@@ -160,6 +160,9 @@ export PATH="$HOME/.atuin/bin:$PATH"
 # Scripts
 export PATH="$PATH:$HOME/dotfiles/scripts"
 
+# Snap
+export PATH=$PATH:/var/lib/snapd/snap/bin
+
 # Final PATH cleanup (remove duplicates)
 export PATH=$(clean_path "$PATH")
 
