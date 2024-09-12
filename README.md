@@ -1,3 +1,9 @@
-# dotfiles
-repo housing my dotfiles
-using ansible pull
+# Dotfiles
+
+This repository contains my personal dotfiles.
+
+## Installation
+
+Clone this repository:
+```bash
+git clone https://github.com/tehuticode/dotfiles.git ~/dotfiles
