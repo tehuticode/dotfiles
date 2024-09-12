@@ -24,6 +24,7 @@ vim.keymap.set('n', '<c-l>', ':wincmd l<CR>')
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 vim.keymap.set('n', '<C-n>', ':vnew<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>cx', ':chmod +x %<CR>', opts)
 
 
 -- Copy Full Path of Current File
